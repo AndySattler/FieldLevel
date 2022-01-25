@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using Services.Service;
 
 namespace FieldLevel.Controllers
 {
@@ -13,24 +15,29 @@ namespace FieldLevel.Controllers
     {
       
         private readonly ILogger<AuthorController> _logger;
-        private readonly Infrastructure.Repositories.IPostRepository _repo;
+        private readonly IPostService _postService;
+        private readonly IMapper _mapper;
 
-        public AuthorController(ILogger<AuthorController> logger, ThirdPartyHttpClient.IHttpClient client, Infrastructure.Repositories.IPostRepository repo)
+        public AuthorController(
+            ILogger<AuthorController> logger,
+            IPostService postService,
+            IMapper mapper)
         {
             _logger = logger;
-            _repo = repo;
+            _postService = postService;
+            _mapper = mapper;
         }
 
         [HttpGet]
         [Route("{id}/latestpost")]
         public async Task<ActionResult<DTO.Post>> Get(int id)
         {
-            var lastPost = await _repo.GetLatestAuthorPost(id);
+            var lastPost = await _postService.GetLatestAuthorPost(id);
             
             if (lastPost == null)
                 return NotFound();
 
-            return Ok(lastPost);
+            return Ok(_mapper.Map<DTO.Post>(lastPost));
         }
     }
 }

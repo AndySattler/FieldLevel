@@ -18,6 +18,7 @@ namespace Infrastructure.Repositories
         private readonly IMapper _mapper;
         private DateTime _lastUpdated;
         private static List<DTO.Post> _posts = new List<DTO.Post>();
+        private static bool _refreshingCache;
         private readonly IRepositoryConfiguration _repositoryConfiguration;
 
         public PostRepository(ThirdPartyHttpClient.IHttpClient httpclient, IMapper mapper, IRepositoryConfiguration repositoryConfiguration)
@@ -42,13 +43,22 @@ namespace Infrastructure.Repositories
 
         private async Task UpdatePostsIfNecessary()
         {
-            if(_lastUpdated.AddSeconds(_repositoryConfiguration.GetCacheExpirationTimeInSeconds()) <= DateTime.Now)
+            try
             {
-                var clientPosts = await _httpClient.GetPosts();
-                _posts = _mapper.Map<IEnumerable<DTO.Post>>(clientPosts).ToList();
+                if (!_refreshingCache && _lastUpdated.AddSeconds(_repositoryConfiguration.GetCacheExpirationTimeInSeconds()) <= DateTime.Now)
+                {
+                    _refreshingCache = true;
+                    var clientPosts = await _httpClient.GetPosts();
+                    _posts = _mapper.Map<IEnumerable<DTO.Post>>(clientPosts).ToList();
+                    _refreshingCache = false;
+                    _lastUpdated = DateTime.Now;
+                }
+            }
+            catch
+            {
+                _refreshingCache = false;
+                throw new Exception("Error refreshing cache");
             }
         }
-
-        
     }
 }

@@ -4,13 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 
-namespace FieldLevel.DTO
+namespace Services.DTO
 {
     public class AutoMapperMapping : Profile
     {
         public AutoMapperMapping()
         {
-            CreateMap<Services.DTO.Post, Post>().ReverseMap();
+            CreateMap<Infrastructure.DTO.Post, Post>().ReverseMap();
         }
     }
 }

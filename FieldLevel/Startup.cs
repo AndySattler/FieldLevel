@@ -32,9 +32,11 @@ namespace FieldLevel
             services.AddTransient<IHttpClient, HttpClient>();
             services.AddSingleton<Infrastructure.Repositories.IRepositoryConfiguration, AppConfiguration>();
             services.AddTransient<Infrastructure.Repositories.IPostRepository, Infrastructure.Repositories.PostRepository>();
+            services.AddTransient<Services.Service.IPostService, Services.Service.PostService>();
             services.AddSingleton(new AutoMapper.MapperConfiguration(cfg => {
                 cfg.AddProfile(new Infrastructure.DTO.AutoMapperMapping());
-                cfg.AddProfile(new DTO.AutoMapperMapping());
+                cfg.AddProfile(new Services.DTO.AutoMapperMapping());
+                cfg.AddProfile(new DTO.AutoMapperMapping());                
             }).CreateMapper());
             
 
