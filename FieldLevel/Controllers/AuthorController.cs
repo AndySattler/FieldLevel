@@ -32,12 +32,21 @@ namespace FieldLevel.Controllers
         [Route("{id}/latestpost")]
         public async Task<ActionResult<DTO.Post>> Get(int id)
         {
-            var lastPost = await _postService.GetLatestAuthorPost(id);
-            
-            if (lastPost == null)
-                return NotFound();
+            try
+            {
+                var lastPost = await _postService.GetLatestAuthorPost(id);
 
-            return Ok(_mapper.Map<DTO.Post>(lastPost));
+                if (lastPost == null)
+                    return NotFound();
+
+                return Ok(_mapper.Map<DTO.Post>(lastPost));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error Getting latest post for author {id} " + ex.Message);
+            }
+
+            return StatusCode(Microsoft.AspNetCore.Http.StatusCodes.Status500InternalServerError);
         }
     }
 }
