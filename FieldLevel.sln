@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThirdPartyHttpClient", "ThirdPartyHttpClient\ThirdPartyHttpClient.csproj", "{2337449E-22DF-4C22-937E-B04D2DE3743D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThirdPartyHttpClient", "ThirdPartyHttpClient\ThirdPartyHttpClient\ThirdPartyHttpClient.csproj", "{2337449E-22DF-4C22-937E-B04D2DE3743D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThirdPartyHttpClientTests", "ThirdPartyHttpClientTests\ThirdPartyHttpClientTests.csproj", "{D9685937-058B-4180-975D-2F053B0BB5D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThirdPartyHttpClientTests", "ThirdPartyHttpClient\ThirdPartyHttpClientTests\ThirdPartyHttpClientTests.csproj", "{D9685937-058B-4180-975D-2F053B0BB5D7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FieldLevel", "..\FieldLevel\FieldLevel.csproj", "{E6470BC8-2A09-4AE6-AEFD-C03301B0D007}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FieldLevel", "FieldLevel\FieldLevel.csproj", "{E6470BC8-2A09-4AE6-AEFD-C03301B0D007}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "..\Infrastructure\Infrastructure.csproj", "{3A55E022-76DB-46BD-B651-799A8F98E5DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{3A55E022-76DB-46BD-B651-799A8F98E5DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfrastructureTests", "..\InfrastructureTests\InfrastructureTests.csproj", "{B5836582-4B2D-4BEC-A561-C8E9225ED162}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfrastructureTests", "InfrastructureTests\InfrastructureTests.csproj", "{B5836582-4B2D-4BEC-A561-C8E9225ED162}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "..\Services\Services.csproj", "{2BE0DF32-0DB8-47EF-909C-E67563E2AB6F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{2BE0DF32-0DB8-47EF-909C-E67563E2AB6F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
